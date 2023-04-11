@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import insertUser from '../redux/actions/index';
+import validEmail from '../helpers/validEmail';
 
 class Login extends React.Component {
   state = {
@@ -14,8 +17,8 @@ class Login extends React.Component {
       { [name]: value },
       () => {
         const MAX_LENGTH = 6;
-        const { password } = this.state;
-        if (password.length >= MAX_LENGTH) {
+        const { password, email } = this.state;
+        if (password.length >= MAX_LENGTH && validEmail(email)) {
           this.setState({ disabled: false });
         } else {
           this.setState({ disabled: true });
@@ -24,8 +27,11 @@ class Login extends React.Component {
     );
   };
 
-  handleSubmit = () => {
-    const { history } = this.props;
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { history, dispatch } = this.props;
+    const { state } = this;
+    dispatch(insertUser(state));
     history.push('/carteira');
   };
 
@@ -33,43 +39,45 @@ class Login extends React.Component {
     const { email, password, disabled } = this.state;
     return (
       <div className="containerLogin">
-        <input
-          className="input-login"
-          data-testid="email-input"
-          name="email"
-          onChange={ this.handleChanges }
-          placeholder="exemple@email.com"
-          required
-          type="email"
-          value={ email }
-        />
-        <input
-          className="input-login"
-          data-testid="password-input"
-          name="password"
-          onChange={ this.handleChanges }
-          placeholder="senha@123"
-          required
-          type="password"
-          value={ password }
-        />
-        <button
-          className="button-login"
-          disabled={ disabled }
-          onClick={ this.handleSubmit }
-        >
-          Entrar
-        </button>
+        <form onSubmit={ this.handleSubmit }>
+          <input
+            className="input-login"
+            data-testid="email-input"
+            name="email"
+            onChange={ this.handleChanges }
+            placeholder="exemple@email.com"
+            required
+            type="email"
+            value={ email }
+          />
+          <input
+            className="input-login"
+            data-testid="password-input"
+            name="password"
+            onChange={ this.handleChanges }
+            placeholder="senha@123"
+            required
+            type="password"
+            value={ password }
+          />
+          <button
+            type="submit"
+            className="input-login"
+            disabled={ disabled }
+          >
+            Entrar
+          </button>
+        </form>
       </div>
     );
   }
 }
 
-export default Login;
-
 Login.propTypes = {
-  history: PropTypes.shape(
-    PropTypes.func,
-  ).isRequired,
-  push: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
+
+export default connect()(Login);
