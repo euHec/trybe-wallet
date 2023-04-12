@@ -28,12 +28,16 @@ class WalletForm extends Component {
     this.setState({ [name]: value });
   };
 
+  handleSubmit = (state) => {
+    
+  }
+
   render() {
     const { currencies } = this.props;
     const { coin, description, method, number, tag } = this.state;
     return (
       <div>
-        <form>
+        <form onSubmit={ this.handleSubmit }>
           <input
             data-testid="value-input"
             name="number"
@@ -80,6 +84,7 @@ class WalletForm extends Component {
               <option key={ index }>{ tags }</option>
             ))}
           </select>
+          <button type="submit">Adicionar despesa</button>
         </form>
       </div>
     );
