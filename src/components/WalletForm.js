@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+const methodInputs = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
+const tagInputs = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
+
 class WalletForm extends Component {
   state = {
     number: 0,
@@ -11,14 +14,21 @@ class WalletForm extends Component {
     tag: '',
   };
 
+  componentDidMount() {
+    const { currencies } = this.props;
+    this.setState({
+      coin: currencies[0],
+      method: methodInputs[0],
+      tag: tagInputs[0],
+    });
+  }
+
   handleChanges = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
   };
 
   render() {
-    const methodInputs = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
-    const tagInputs = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     const { currencies } = this.props;
     const { coin, description, method, number, tag } = this.state;
     return (
