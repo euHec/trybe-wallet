@@ -49,8 +49,8 @@ class Table extends Component {
                   </td>
                   <td><p>Real</p></td>
                   <td>
-                    <button>Editar</button>
-                    <button>Excluir</button>
+                    <button data-testid="delete-btn">Editar</button>
+                    <button data-testid="edit-btn">Excluir</button>
                   </td>
                 </tr>))
             }
