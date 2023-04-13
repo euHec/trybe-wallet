@@ -7,7 +7,7 @@ class Header extends Component {
     const { email, totalExpenses } = this.props;
     return (
       <header>
-        <h1 data-testid="total-field">{ totalExpenses }</h1>
+        <h1 data-testid="total-field">{ (Number(totalExpenses)).toFixed(2) }</h1>
         <h1 data-testid="header-currency-field">BRL</h1>
         <h1 data-testid="email-field">{ email }</h1>
       </header>

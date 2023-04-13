@@ -5,6 +5,7 @@ export const FETCH_API_SUCCESS = 'FETCH_API_SUCCESS';
 export const FETCH_API_FAIL = 'FETCH_API_FAIL';
 export const ADD_EXPENSES = 'ADD_EXPENSES';
 export const ADD_TOTAL_EXPENSES = 'ADD_TOTAL_EXPENSES';
+export const ADD_NEW_EXPENSES = 'ADD_NEW_EXPENSES';
 
 export const insertUser = (user) => ({
   type: ADD_USER,
@@ -49,5 +50,12 @@ export const insertTotalExpenses = (totalExpenses) => ({
   type: ADD_TOTAL_EXPENSES,
   payload: {
     totalExpenses,
+  },
+});
+
+export const insertNewExpenses = (expenses) => ({
+  type: ADD_NEW_EXPENSES,
+  payload: {
+    expenses,
   },
 });

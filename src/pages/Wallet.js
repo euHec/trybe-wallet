@@ -8,6 +8,7 @@ import Table from '../components/Table';
 
 import { insertAPI, insertExpenses, insertTotalExpenses } from '../redux/actions';
 import fetchApi from '../helpers/FetchAPI';
+import { generateUniqueId } from '../helpers/idGenerator';
 
 const TIME_OUT = 500;
 
@@ -42,10 +43,10 @@ class Wallet extends React.Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { currencies, dispatch, expenses } = this.props;
+    const { currencies, dispatch } = this.props;
     const { state } = this;
     const result = await fetchApi();
-    const id = expenses.length;
+    const id = generateUniqueId();
     dispatch(insertExpenses(state, result, id));
     setTimeout(() => {
       this.sumExpenses();

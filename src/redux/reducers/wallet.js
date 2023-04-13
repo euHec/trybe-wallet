@@ -2,7 +2,8 @@ import {
   FETCH_API_FAIL,
   FETCH_API_SUCCESS,
   ADD_EXPENSES,
-  ADD_TOTAL_EXPENSES } from '../actions';
+  ADD_TOTAL_EXPENSES,
+  ADD_NEW_EXPENSES } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -40,11 +41,17 @@ const dataWallet = (state = INITIAL_STATE, action) => {
       ...state,
       expenses: [...state.expenses, {
         ...action.payload.expenses,
-        id: action.payload.id,
+        id: state.expenses.length === 0 ? 1 : state.expenses[state.expenses.length - 1].id + 1,
         exchangeRates: {
           ...action.payload.data,
         },
       }],
+    };
+  }
+  case ADD_NEW_EXPENSES: {
+    return {
+      ...state,
+      expenses: action.payload.expenses,
     };
   }
   default:
