@@ -27,3 +27,7 @@
   width: 70%;
   margin: 5px;
 }
+
+table, tr, th, td {
+  border: solid 1px black;
+}

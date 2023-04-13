@@ -61,15 +61,18 @@ class Wallet extends React.Component {
 
   sumExpenses = () => {
     const { dispatch, expenses } = this.props;
-    const { currency } = this.state;
     const values = expenses
-      .map((expense) => expense.value * expense.exchangeRates[currency].ask);
+      .map((expense) => expense.value * expense.exchangeRates[expense.currency].ask);
+    console.log(values);
     const soma = values.reduce((acumulador, valorAtual) => acumulador + valorAtual);
+    console.log(soma);
     const result = soma.toFixed(2);
+    console.log(result);
     dispatch(insertTotalExpenses(result));
   };
 
   render() {
+    const { expenses } = this.props;
     const { currency, description, method, value, tag } = this.state;
     return (
       <>
@@ -87,7 +90,7 @@ class Wallet extends React.Component {
             value={ value }
             tag={ tag }
           />
-          <Table />
+          <Table expenses={ expenses } />
         </main>
       </>
     );
@@ -95,12 +98,15 @@ class Wallet extends React.Component {
 }
 
 Wallet.propTypes = {
-  currencies: PropTypes.arrayOf.isRequired,
+  currencies: PropTypes.arrayOf(
+    PropTypes.string,
+  ).isRequired,
   dispatch: PropTypes.func.isRequired,
-  expenses: PropTypes.shape({
-    length: PropTypes.func,
-    map: PropTypes.func,
-  }).isRequired,
+  expenses: PropTypes.arrayOf(
+    PropTypes.objectOf(
+      PropTypes.any,
+    ),
+  ).isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -72,21 +72,22 @@ class WalletForm extends Component {
 }
 
 WalletForm.propTypes = {
-  currencies: PropTypes.shape({
-    map: PropTypes.func,
-  }).isRequired,
+  currencies: PropTypes.arrayOf(
+    PropTypes.string,
+    { map: PropTypes.func },
+  ).isRequired,
   currency: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   handleChanges: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   method: PropTypes.string.isRequired,
-  methodInputs: PropTypes.shape({
-    map: PropTypes.func,
-  }).isRequired,
+  methodInputs: PropTypes.arrayOf(
+    PropTypes.string,
+  ).isRequired,
   tag: PropTypes.string.isRequired,
-  tagInputs: PropTypes.shape({
-    map: PropTypes.func,
-  }).isRequired,
+  tagInputs: PropTypes.arrayOf(
+    PropTypes.string,
+  ).isRequired,
   value: PropTypes.string.isRequired,
 };
 

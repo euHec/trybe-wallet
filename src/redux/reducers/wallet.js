@@ -10,7 +10,7 @@ const INITIAL_STATE = {
   coins: null,
   editor: false,
   idToEdit: 0,
-  totalExpenses: [],
+  totalExpenses: '',
 };
 
 const dataWallet = (state = INITIAL_STATE, action) => {
