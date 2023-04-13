@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+
 import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
+import Table from '../components/Table';
+
 import { insertAPI, insertExpenses, insertTotalExpenses } from '../redux/actions';
 import fetchApi from '../helpers/FetchAPI';
 
@@ -70,6 +73,7 @@ class Wallet extends React.Component {
     const { currency, description, method, value, tag } = this.state;
     return (
       <>
+        <div>TrybeWallet</div>
         <Header />
         <main>
           <WalletForm
@@ -83,7 +87,7 @@ class Wallet extends React.Component {
             value={ value }
             tag={ tag }
           />
-          <div>TrybeWallet</div>
+          <Table />
         </main>
       </>
     );
