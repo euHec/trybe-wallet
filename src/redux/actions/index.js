@@ -1,8 +1,10 @@
-// Coloque aqui suas actions
+import fetchApi from '../../helpers/FetchAPI';
 
 export const ADD_USER = 'ADD_USER';
 export const FETCH_API_SUCCESS = 'FETCH_API_SUCCESS';
 export const FETCH_API_FAIL = 'FETCH_API_FAIL';
+export const ADD_EXPENSES = 'ADD_EXPENSES';
+export const ADD_TOTAL_EXPENSES = 'ADD_TOTAL_EXPENSES';
 
 export const insertUser = (user) => ({
   type: ADD_USER,
@@ -25,12 +27,27 @@ export const currenciesError = (error) => ({
   },
 });
 
-export const fetchApi = () => async (dispatch) => {
+export const insertAPI = () => async (dispatch) => {
   try {
-    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
-    const data = await response.json();
-    dispatch(insertcurrencies(Object.keys(data)));
+    const result = await fetchApi();
+    dispatch(insertcurrencies(result));
   } catch (error) {
     dispatch(currenciesError(error.message));
   }
 };
+
+export const insertExpenses = (expenses, data, id) => ({
+  type: ADD_EXPENSES,
+  payload: {
+    expenses,
+    data,
+    id,
+  },
+});
+
+export const insertTotalExpenses = (totalExpenses) => ({
+  type: ADD_TOTAL_EXPENSES,
+  payload: {
+    totalExpenses,
+  },
+});

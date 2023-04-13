@@ -11,7 +11,7 @@ const dataUser = (state = INITIAL_STATE, action) => {
   case ADD_USER: {
     return {
       ...state,
-      email: action.payload.email,
+      email: action.payload.user.email,
       // password: action.payload.password,
     };
   }
