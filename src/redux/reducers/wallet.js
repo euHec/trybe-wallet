@@ -41,7 +41,8 @@ const dataWallet = (state = INITIAL_STATE, action) => {
       ...state,
       expenses: [...state.expenses, {
         ...action.payload.expenses,
-        id: state.expenses.length === 0 ? 1 : state.expenses[state.expenses.length - 1].id + 1,
+        id: state.expenses.length === 0
+          ? 0 : state.expenses[state.expenses.length - 1].id + 1,
         exchangeRates: {
           ...action.payload.data,
         },
