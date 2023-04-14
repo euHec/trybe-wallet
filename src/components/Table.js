@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { insertNewExpenses, insertTotalExpenses } from '../redux/actions';
+import { insertNewExpenses, insertTotalExpenses, requestEdit } from '../redux/actions';
 
 const TIME_OUT = 500;
 
@@ -13,6 +13,12 @@ class Table extends Component {
     setTimeout(() => {
       this.sumExpenses();
     }, TIME_OUT);
+  };
+
+  handleEdit = (id) => {
+    console.log(id);
+    const { dispatch } = this.props;
+    dispatch(requestEdit(id));
   };
 
   sumExpenses = () => {
@@ -77,6 +83,7 @@ class Table extends Component {
                   </button>
                   <button
                     data-testid="edit-btn"
+                    onClick={ () => this.handleEdit(expense.id) }
                   >
                     Editar
                   </button>

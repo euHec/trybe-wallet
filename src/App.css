@@ -1,5 +1,7 @@
 body {
   align-items: center;
+  background-color: black;
+  color: white;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -28,5 +30,5 @@ body {
 }
 
 table , tr , th , td {
-  border: solid 1px black;
+  border: solid 1px white;
 }

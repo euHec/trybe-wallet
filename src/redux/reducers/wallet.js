@@ -3,7 +3,9 @@ import {
   FETCH_API_SUCCESS,
   ADD_EXPENSES,
   ADD_TOTAL_EXPENSES,
-  ADD_NEW_EXPENSES } from '../actions';
+  ADD_NEW_EXPENSES,
+  REQUEST_EDIT_EXPENSES,
+  NEW_EXPENSES_EDIT } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -19,22 +21,13 @@ const dataWallet = (state = INITIAL_STATE, action) => {
   case FETCH_API_SUCCESS: {
     const result = Object.keys(action.payload.data);
     result.splice(1, 1);
-    return {
-      ...state,
-      currencies: result,
-    };
+    return { ...state, currencies: result };
   }
   case FETCH_API_FAIL: {
-    return {
-      ...state,
-      currencies: action.payload.error,
-    };
+    return { ...state, currencies: action.payload.error };
   }
   case ADD_TOTAL_EXPENSES: {
-    return {
-      ...state,
-      totalExpenses: action.payload.totalExpenses,
-    };
+    return { ...state, totalExpenses: action.payload.totalExpenses };
   }
   case ADD_EXPENSES: {
     return {
@@ -42,17 +35,26 @@ const dataWallet = (state = INITIAL_STATE, action) => {
       expenses: [...state.expenses, {
         ...action.payload.expenses,
         id: state.expenses.length === 0
-          ? 0 : state.expenses[state.expenses.length - 1].id + 1,
-        exchangeRates: {
-          ...action.payload.data,
-        },
+          ? 0 : (state.expenses.length - 1) + 1,
+        exchangeRates: { ...action.payload.data },
       }],
     };
   }
   case ADD_NEW_EXPENSES: {
+    return { ...state, expenses: action.payload.expenses };
+  }
+  case REQUEST_EDIT_EXPENSES: {
+    return { ...state, editor: !state.editor, idToEdit: action.payload.id };
+  }
+  case NEW_EXPENSES_EDIT: {
     return {
       ...state,
-      expenses: action.payload.expenses,
+      editor: false,
+      expenses: [{
+        ...action.payload.expenses,
+        id: action.payload.id,
+        exchangeRates: action.payload.data,
+      }, ...action.payload.newExpenses],
     };
   }
   default:

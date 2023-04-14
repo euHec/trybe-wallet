@@ -6,6 +6,8 @@ export const FETCH_API_FAIL = 'FETCH_API_FAIL';
 export const ADD_EXPENSES = 'ADD_EXPENSES';
 export const ADD_TOTAL_EXPENSES = 'ADD_TOTAL_EXPENSES';
 export const ADD_NEW_EXPENSES = 'ADD_NEW_EXPENSES';
+export const REQUEST_EDIT_EXPENSES = 'REQUEST_EDIT_EXPENSES';
+export const NEW_EXPENSES_EDIT = 'NEW_EXPENSES_EDIT';
 
 export const insertUser = (user) => ({
   type: ADD_USER,
@@ -56,6 +58,23 @@ export const insertTotalExpenses = (totalExpenses) => ({
 export const insertNewExpenses = (expenses) => ({
   type: ADD_NEW_EXPENSES,
   payload: {
+    expenses,
+  },
+});
+
+export const requestEdit = (id) => ({
+  type: REQUEST_EDIT_EXPENSES,
+  payload: {
+    id,
+  },
+});
+
+export const insertNewExpensesEdit = (newExpenses, expenses, data, id) => ({
+  type: NEW_EXPENSES_EDIT,
+  payload: {
+    newExpenses,
+    id,
+    data,
     expenses,
   },
 });

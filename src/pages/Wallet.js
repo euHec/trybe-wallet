@@ -6,9 +6,12 @@ import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
 import Table from '../components/Table';
 
-import { insertAPI, insertExpenses, insertTotalExpenses } from '../redux/actions';
+import {
+  insertAPI,
+  insertExpenses,
+  insertTotalExpenses,
+  insertNewExpensesEdit } from '../redux/actions';
 import fetchApi from '../helpers/FetchAPI';
-import { generateUniqueId } from '../helpers/idGenerator';
 
 const TIME_OUT = 500;
 
@@ -46,8 +49,27 @@ class Wallet extends React.Component {
     const { currencies, dispatch } = this.props;
     const { state } = this;
     const result = await fetchApi();
-    const id = generateUniqueId();
-    dispatch(insertExpenses(state, result, id));
+    dispatch(insertExpenses(state, result));
+    setTimeout(() => {
+      this.sumExpenses();
+    }, TIME_OUT);
+    this.setState({
+      value: '',
+      description: '',
+      currency: currencies[0],
+      method: methodInputs[0],
+      tag: tagInputs[0],
+    });
+  };
+
+  handleSubmitEdit = async (e) => {
+    e.preventDefault();
+    const { currencies, dispatch, expenses, idToEdit } = this.props;
+    const { state } = this;
+    const newExpenses = expenses.filter((expense) => expense.id !== idToEdit);
+    console.log(newExpenses);
+    const result = await fetchApi();
+    dispatch(insertNewExpensesEdit(newExpenses, state, result, idToEdit));
     setTimeout(() => {
       this.sumExpenses();
     }, TIME_OUT);
@@ -87,6 +109,7 @@ class Wallet extends React.Component {
             description={ description }
             handleChanges={ this.handleChanges }
             handleSubmit={ this.handleSubmit }
+            handleSubmitEdit={ this.handleSubmitEdit }
             method={ method }
             value={ value }
             tag={ tag }
@@ -108,11 +131,13 @@ Wallet.propTypes = {
       PropTypes.any,
     ),
   ).isRequired,
+  idToEdit: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
   expenses: state.wallet.expenses,
+  idToEdit: state.wallet.idToEdit,
 });
 
 export default connect(mapStateToProps)(Wallet);

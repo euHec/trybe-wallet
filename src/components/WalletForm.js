@@ -5,19 +5,21 @@ import { connect } from 'react-redux';
 class WalletForm extends Component {
   render() {
     const {
+      currencies,
+      editor,
       methodInputs,
       tagInputs,
-      currencies,
       currency,
       description,
       method,
       value,
       tag,
       handleChanges,
-      handleSubmit } = this.props;
+      handleSubmit,
+      handleSubmitEdit } = this.props;
     return (
       <div>
-        <form onSubmit={ handleSubmit }>
+        <form onSubmit={ editor ? handleSubmitEdit : handleSubmit }>
           <input
             data-testid="value-input"
             name="value"
@@ -64,7 +66,9 @@ class WalletForm extends Component {
               <option key={ index }>{ tags }</option>
             ))}
           </select>
-          <button type="submit">Adicionar despesa</button>
+          { editor
+            ? <button type="submit">Editar despesa</button>
+            : <button type="submit">Adicionar despesa</button> }
         </form>
       </div>
     );
@@ -76,10 +80,12 @@ WalletForm.propTypes = {
     PropTypes.string,
     { map: PropTypes.func },
   ).isRequired,
+  editor: PropTypes.bool.isRequired,
   currency: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   handleChanges: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  handleSubmitEdit: PropTypes.func.isRequired,
   method: PropTypes.string.isRequired,
   methodInputs: PropTypes.arrayOf(
     PropTypes.string,
@@ -93,6 +99,7 @@ WalletForm.propTypes = {
 
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
+  editor: state.wallet.editor,
 });
 
 export default connect(mapStateToProps)(WalletForm);
