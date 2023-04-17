@@ -27,7 +27,14 @@ const dataWallet = (state = INITIAL_STATE, action) => {
     return { ...state, currencies: action.payload.error };
   }
   case ADD_TOTAL_EXPENSES: {
-    return { ...state, totalExpenses: action.payload.totalExpenses };
+    if (state.expenses.length !== 0) {
+      const values = state.expenses
+        .map((expense) => expense.value * expense.exchangeRates[expense.currency].ask);
+      const soma = values.reduce((acumulador, valorAtual) => acumulador + valorAtual);
+      return { ...state,
+        totalExpenses: `${soma}` };
+    }
+    return { ...state, totalExpenses: '0' };
   }
   case ADD_EXPENSES: {
     return {

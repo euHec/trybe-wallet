@@ -31,4 +31,5 @@ body {
 
 table , tr , th , td {
   border: solid 1px white;
+  margin-top: 10px;
 }

@@ -10,29 +10,13 @@ class Table extends Component {
     const { expenses, dispatch } = this.props;
     const newExpenses = expenses.filter((expense) => expense.id !== id);
     dispatch(insertNewExpenses(newExpenses));
-    setTimeout(() => {
-      this.sumExpenses();
-    }, TIME_OUT);
+    dispatch(insertTotalExpenses());
   };
 
   handleEdit = (id) => {
     console.log(id);
     const { dispatch } = this.props;
     dispatch(requestEdit(id));
-  };
-
-  sumExpenses = () => {
-    const { dispatch, expenses } = this.props;
-    if (expenses.length === 0) {
-      const result = '0';
-      dispatch(insertTotalExpenses(result));
-    } else {
-      const values = expenses
-        .map((expense) => expense.value * expense.exchangeRates[expense.currency].ask);
-      const soma = values.reduce((acumulador, valorAtual) => acumulador + valorAtual);
-      const result = soma.toFixed(2);
-      dispatch(insertTotalExpenses(result));
-    }
   };
 
   render() {
@@ -73,7 +57,7 @@ class Table extends Component {
                       .toFixed(2)
                   }
                 </td>
-                <td><p>Real</p></td>
+                <td>Real</td>
                 <td>
                   <button
                     data-testid="delete-btn"

@@ -48,11 +48,8 @@ export const insertExpenses = (expenses, data, id) => ({
   },
 });
 
-export const insertTotalExpenses = (totalExpenses) => ({
+export const insertTotalExpenses = () => ({
   type: ADD_TOTAL_EXPENSES,
-  payload: {
-    totalExpenses,
-  },
 });
 
 export const insertNewExpenses = (expenses) => ({

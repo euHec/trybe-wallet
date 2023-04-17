@@ -50,9 +50,7 @@ class Wallet extends React.Component {
     const { state } = this;
     const result = await fetchApi();
     dispatch(insertExpenses(state, result));
-    setTimeout(() => {
-      this.sumExpenses();
-    }, TIME_OUT);
+    dispatch(insertTotalExpenses());
     this.setState({
       value: '',
       description: '',
@@ -70,9 +68,7 @@ class Wallet extends React.Component {
     console.log(newExpenses);
     const result = await fetchApi();
     dispatch(insertNewExpensesEdit(newExpenses, state, result, idToEdit));
-    setTimeout(() => {
-      this.sumExpenses();
-    }, TIME_OUT);
+    dispatch(insertTotalExpenses());
     this.setState({
       value: '',
       description: '',
@@ -80,18 +76,6 @@ class Wallet extends React.Component {
       method: methodInputs[0],
       tag: tagInputs[0],
     });
-  };
-
-  sumExpenses = () => {
-    const { dispatch, expenses } = this.props;
-    const values = expenses
-      .map((expense) => expense.value * expense.exchangeRates[expense.currency].ask);
-    console.log(values);
-    const soma = values.reduce((acumulador, valorAtual) => acumulador + valorAtual);
-    console.log(soma);
-    const result = soma.toFixed(2);
-    console.log(result);
-    dispatch(insertTotalExpenses(result));
   };
 
   render() {
