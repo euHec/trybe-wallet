@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { insertNewExpenses, insertTotalExpenses, requestEdit } from '../redux/actions';
 
-const TIME_OUT = 500;
-
 class Table extends Component {
   deleteExpense = (id) => {
     const { expenses, dispatch } = this.props;

@@ -5,6 +5,8 @@ import { renderWithRouterAndRedux } from './helpers/renderWith';
 import App from '../App';
 import mockData from './helpers/mockData';
 
+const TOTAL_FIELD = 'total-field';
+
 describe('Componente Header', () => {
   it('Testa se o email do login está na tela', () => {
     const initialEntries = ['/carteira'];
@@ -19,7 +21,7 @@ describe('Componente Header', () => {
     const initialEntries = ['/carteira'];
     renderWithRouterAndRedux(<App />, { initialEntries });
 
-    const total = screen.getByTestId('total-field');
+    const total = screen.getByTestId(TOTAL_FIELD);
 
     expect(total).toBeInTheDocument();
     expect(total).toHaveTextContent('0.00');
@@ -39,7 +41,7 @@ describe('Componente Header', () => {
     };
     renderWithRouterAndRedux(<App />, { initialEntries, initialState });
 
-    const total = screen.getByTestId('total-field');
+    const total = screen.getByTestId(TOTAL_FIELD);
 
     expect(total).toBeInTheDocument();
     expect(total).toHaveTextContent('10.00');
@@ -73,7 +75,7 @@ describe('Componente Header', () => {
       json: async () => mockData,
     }));
 
-    expect(screen.getByTestId('total-field')).toHaveTextContent('0.00');
+    expect(screen.getByTestId(TOTAL_FIELD)).toHaveTextContent('0.00');
 
     const valueInput = screen.getByTestId('value-input');
     const descriptionInput = screen.getByTestId('description-input');

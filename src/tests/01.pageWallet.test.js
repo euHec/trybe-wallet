@@ -1,11 +1,6 @@
-
-
-import { screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
 import App from '../App';
 import mockData from './helpers/mockData';
-import { act } from 'react-dom/test-utils';
 
 describe('Testa a página Wallet', () => {
   it('Testa se ao carregar a página é feita a requisição', () => {

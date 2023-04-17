@@ -25,7 +25,7 @@ describe('Botão editar', () => {
           {
             description: 'Biscito',
             currency: 'CAD',
-            method: 'Cartão de débito',
+            method: 'Cartão de crédito',
             value: '5',
             tag: 'Lazer',
             id: 1,

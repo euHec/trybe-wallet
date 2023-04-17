@@ -3,11 +3,14 @@ import userEvent from '@testing-library/user-event';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
 import App from '../App';
 
+const TESTID_EMAIL = 'email-input';
+const TESTID_PASSWORD = 'password-input';
+
 describe('Pagina de login', () => {
   it('Testa se os componentes estão presentes na tela', () => {
     renderWithRouterAndRedux(<App />);
-    const inputEmail = screen.getByTestId('email-input');
-    const inputPassword = screen.getByTestId('password-input');
+    const inputEmail = screen.getByTestId(TESTID_EMAIL);
+    const inputPassword = screen.getByTestId(TESTID_PASSWORD);
     const button = screen.getByRole('button');
 
     expect(inputEmail).toBeInTheDocument();
@@ -21,8 +24,8 @@ describe('Pagina de login', () => {
     const rightEmail = 'exemple@email.com';
     const rightPassword = '@12345';
 
-    const inputEmail = screen.getByTestId('email-input');
-    const inputPassword = screen.getByTestId('password-input');
+    const inputEmail = screen.getByTestId(TESTID_EMAIL);
+    const inputPassword = screen.getByTestId(TESTID_PASSWORD);
     const button = screen.getByRole('button');
 
     expect(button).toBeDisabled();
@@ -42,8 +45,8 @@ describe('Pagina de login', () => {
     const wrongEmail = 'exemple.com';
     const wrongPassword = '@1234';
 
-    const inputEmail = screen.getByTestId('email-input');
-    const inputPassword = screen.getByTestId('password-input');
+    const inputEmail = screen.getByTestId(TESTID_EMAIL);
+    const inputPassword = screen.getByTestId(TESTID_PASSWORD);
     const button = screen.getByRole('button');
 
     expect(button).toBeDisabled();
@@ -63,8 +66,8 @@ describe('Pagina de login', () => {
     const rightEmail = 'exemple@email.com';
     const rightPassword = '@12345';
 
-    const inputEmail = screen.getByTestId('email-input');
-    const inputPassword = screen.getByTestId('password-input');
+    const inputEmail = screen.getByTestId(TESTID_EMAIL);
+    const inputPassword = screen.getByTestId(TESTID_PASSWORD);
     const button = screen.getByRole('button');
 
     userEvent.type(inputEmail, rightEmail);
