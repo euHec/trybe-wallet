@@ -83,9 +83,8 @@ class Wallet extends React.Component {
     const { currency, description, method, value, tag } = this.state;
     return (
       <>
-        <div>TrybeWallet</div>
-        <Header />
-        <main>
+        <header>
+          <Header />
           <WalletForm
             methodInputs={ methodInputs }
             tagInputs={ tagInputs }
@@ -98,6 +97,8 @@ class Wallet extends React.Component {
             value={ value }
             tag={ tag }
           />
+        </header>
+        <main>
           <Table expenses={ expenses } />
         </main>
       </>

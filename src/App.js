@@ -4,7 +4,9 @@ import { Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
 import Wallet from './pages/Wallet';
 
-import './App.css';
+import './AppDesktop.css';
+import './AppMobile.css';
+import './AppTablet.css';
 
 class App extends Component {
   render() {

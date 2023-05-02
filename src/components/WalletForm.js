@@ -19,53 +19,67 @@ class WalletForm extends Component {
       handleSubmitEdit } = this.props;
     return (
       <div>
-        <form onSubmit={ editor ? handleSubmitEdit : handleSubmit }>
-          <input
-            data-testid="value-input"
-            name="value"
-            onChange={ handleChanges }
-            type="number"
-            value={ value }
-          />
-          <input
-            data-testid="description-input"
-            name="description"
-            onChange={ handleChanges }
-            type="text"
-            value={ description }
-          />
-          <select
-            data-testid="currency-input"
-            name="currency"
-            onChange={ handleChanges }
-            value={ currency }
-          >
-            {
-              currencies.map((currencie, index) => (
-                <option key={ index }>{ currencie }</option>
-              ))
-            }
-          </select>
-          <select
-            data-testid="method-input"
-            name="method"
-            onChange={ handleChanges }
-            value={ method }
-          >
-            { methodInputs.map((methods, index) => (
-              <option key={ index }>{ methods }</option>
-            ))}
-          </select>
-          <select
-            data-testid="tag-input"
-            name="tag"
-            onChange={ handleChanges }
-            value={ tag }
-          >
-            { tagInputs.map((tags, index) => (
-              <option key={ index }>{ tags }</option>
-            ))}
-          </select>
+        <form
+          className="form-Wallet"
+          onSubmit={ editor ? handleSubmitEdit : handleSubmit }
+        >
+          <div>
+            <input
+              className="input-form"
+              data-testid="value-input"
+              name="value"
+              onChange={ handleChanges }
+              placeholder="Valor"
+              type="number"
+              value={ value }
+            />
+            <input
+              className="input-form"
+              data-testid="description-input"
+              name="description"
+              onChange={ handleChanges }
+              placeholder="Descrição da despesa"
+              type="text"
+              value={ description }
+            />
+          </div>
+          <div>
+            <select
+              className="input-form-select"
+              data-testid="currency-input"
+              name="currency"
+              onChange={ handleChanges }
+              value={ currency }
+            >
+              {
+                currencies.map((currencie, index) => (
+                  <option key={ index }>{ currencie }</option>
+                ))
+              }
+            </select>
+            <select
+              className="input-form-select"
+              data-testid="method-input"
+              name="method"
+              onChange={ handleChanges }
+              value={ method }
+            >
+              { methodInputs.map((methods, index) => (
+                <option key={ index }>{ methods }</option>
+              ))}
+            </select>
+            <select
+              className="input-form-select"
+              data-testid="tag-input"
+              name="tag"
+              onChange={ handleChanges }
+              value={ tag }
+            >
+              { tagInputs.map((tags, index) => (
+                <option key={ index }>{ tags }</option>
+              ))}
+            </select>
+          </div>
           { editor
             ? <button type="submit">Editar despesa</button>
             : <button type="submit">Adicionar despesa</button> }

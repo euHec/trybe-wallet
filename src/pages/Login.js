@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { insertUser } from '../redux/actions/index';
 import validEmail from '../helpers/validEmail';
+import logo from '../img/logo Trybe Wallet.svg';
 
 class Login extends React.Component {
   state = {
@@ -39,6 +40,7 @@ class Login extends React.Component {
     const { email, password, disabled } = this.state;
     return (
       <div className="containerLogin">
+        <img src={ logo } alt="logo" />
         <form onSubmit={ this.handleSubmit }>
           <input
             className="input-login"
@@ -62,7 +64,7 @@ class Login extends React.Component {
           />
           <button
             type="submit"
-            className="input-login"
+            className="button-login"
             disabled={ disabled }
           >
             Entrar
