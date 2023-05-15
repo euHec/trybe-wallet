@@ -10,18 +10,12 @@ class Header extends Component {
     const { email, totalExpenses } = this.props;
     return (
       <div className="initial-infos">
-        <div>
-          <img src={ logo } alt="logo" />
-        </div>
-        <div>
+        <img src={ logo } alt="logo" />
+        <h2>
           <FaCoins />
-          <h2>Total de despesas: </h2>
-          <h2 data-testid="total-field">{ (Number(totalExpenses)).toFixed(2) }</h2>
-          <h2 data-testid="header-currency-field"> BRL</h2>
-        </div>
-        <div>
-          <h2 data-testid="email-field">{ email }</h2>
-        </div>
+          { `Total de despesas: ${(Number(totalExpenses)).toFixed(2)} BRL` }
+        </h2>
+        <h2 data-testid="email-field">{ email }</h2>
       </div>
     );
   }

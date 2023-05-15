@@ -1,29 +1,32 @@
 @media only screen and (max-width: 480px) {
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   body {
-    align-items: center;
+    /* align-items: center; */
+    backdrop-filter: blur(5px);
     background-color: black;
     background-image: url(./img/foto\ fundo.png);
     background-repeat: no-repeat;
-    backdrop-filter: blur(5px);
     background-size: cover;
-    color: white;
+    /* color: white;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; */
     height: 100vh;
-    justify-content: center;
-    width: 100vw;
-  }
-
-  #root {
-    align-items: center;
-    display: contents;
-    height: 100vh;
-    justify-content: center;
-    margin: auto;
     width: 100vw;
   }
 
   .containerLogin {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    margin: auto;
+    width: 100vw;
+  }
+
+  .containerLogin div {
     align-items: center;
     background-color: #ffffff;
     border-radius: 15px;
@@ -32,7 +35,7 @@
     height: 40%;
     justify-content: center;
     margin: auto;
-    width: 80%;
+    width: 90%;
   }
 
   .containerLogin img {
@@ -46,8 +49,8 @@
   }
 
   .input-login {
-    background-color: rgb(255, 255, 255);
     box-shadow: 1px 1px 1px #2FC18C;
+    background-color: rgb(255, 255, 255);
     border: none;
     color: black;
     border-radius: 10px;
@@ -82,92 +85,74 @@
     background-color: rgba(75, 69, 69, 0.712);
   }
 
-  header {
-    background-color: white;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    color: black;
-    height: 230px;
-    padding: 20px;
-    position: absolute;
-    top: 0;
-    width: 70%;
+  .button-login:hover {
+    background-color: #2FC18C;
+    color: white;
   }
 
-  header > :nth-child(2) {
-    margin-top: 10px;
-    padding: 10px;
+  header {
+    background-color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 15%;
+    margin: auto;
+    width: 95%;
   }
 
   .initial-infos {
     align-items: center;
     background-color: aquamarine;
-    border-radius: 10px;
-    box-shadow: 1px 2px 2px #2FC18C;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     display: flex;
-    flex-direction: column-reverse;
-    height: 25%;
-    justify-content: space-around;
+    flex-direction: column;
+    height: 70%;
     margin: auto;
+    padding: 5px;
     width: 90%;
   }
 
-  h2 {
-    text-align: center;
-    margin: 0 2px;
-    font-size: 12px;
+  .initial-infos h2 {
+    font-size: 20px;
+    margin: 5px auto;
   }
 
-  .initial-infos > :nth-child(1) {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 30px;
-    width: 100%;
-  }
-
-  .initial-infos > :nth-child(1) img{
-    width: 40%;
-  }
-
-  .initial-infos > :nth-child(2) {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: auto;
-    width: 100%;
-  }
-
-  .initial-infos > :nth-child(3) {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: auto;
-    width: 100%;
+  .initial-infos img {
+    width: 200px;
   }
 
   .form-Wallet {
     align-items: center;
     display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    margin: auto;
+    flex-flow: column;
   }
 
   .form-Wallet > :nth-child(1) {
+    align-items: center;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
+    justify-content: space-around;
+    margin: 20px auto;
+    width: 90%;
   }
 
   .form-Wallet > :nth-child(2) {
+    align-items: center;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
+    justify-content: space-around;
+    margin: 20px auto;
+    width: 90%;
+  }
+
+  .form-Wallet > :nth-child(3) {
+    color: #2FC18C;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px #2FC18C;
+    height: 30px;
+    margin-bottom: 20px;
+    outline: 0;
+
   }
 
   .input-form {
@@ -177,73 +162,45 @@
     outline: 0;
     text-align: center;
     width: 45%;
-    box-shadow: 1px 1px 1px #2FC18C;
-    margin: 10px 0;
-    font-size: 12px;
+    box-shadow: 1px 1px 5px #2FC18C;
   }
-
-  .input-form::placeholder {
-    font-size: 10px;
-  }
-
 
   .input-form-select {
     background-color: white;
     border: none;
     border-radius: 10px;
-    box-shadow: 1px 1px 1px #2FC18C;
+    box-shadow: 1px 1px 5px #2FC18C;
     height: 30px;
     outline: 0;
     text-align: center;
-    width: 25%;
-    margin: 10px 0;
-    font-size: 12px;
-  }
-
-  .form-Wallet > button {
-    background-color: white;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 1px 1px 1px #2FC18C;
-    height: 30px;
-    margin: 5px auto;
-    outline: 0;
-    width: 50%;
+    width: 30%;
   }
 
   main {
     background-color: #003BE5;
-    border-radius: 20px;
-    height: 60%;
-    margin-top: 15%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    height: 50vh;
+    margin: auto;
     width: 90%;
-    z-index: -1;
+    overflow-y: scroll;
+    overflow-x: scroll;
   }
-
+  
   .content-table {
     height: 80%;
-    margin: 120px auto;
-    overflow-y: scroll;
-    width: 95%;
-  }
-
-  .content-table::-webkit-scrollbar {
-    display: none;
-  }
-
-  table {
     margin: auto;
-    text-align: center;
-    width: 90%;
+    padding-top: 10px;
+    box-sizing: border-box;
+    width: 85%;
   }
 
-  table > thead tr {
-    position: sticky;
-    top: 0;
+  table > thead > tr {
     background-color: #003BE5;
     border-collapse: collapse;
     border-spacing: 0;
-    font-size: 1rem;
+    position: sticky;
+    top: 0;
   }
 
   th {
@@ -251,23 +208,16 @@
     width: 10%;
   }
 
-  td {
-    font-size: 0.8rem;
-  }
-
   .trash-button {
-    background-color: red;
-    color: rgb(0, 0, 0);
-    padding: 5px 15px;
-    border-radius: 10px;
+    color: red;
     border: none;
+    font-size: 30px;
   }
 
   .edit-button {
-    background-color: rgb(255, 230, 0);
-    color: rgb(0, 0, 0);
-    padding: 5px 15px;
-    border-radius: 10px;
+    color: rgb(255, 230, 0);
     border: none;
+    font-size: 30px;
   }
+
 }

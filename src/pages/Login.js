@@ -40,36 +40,38 @@ class Login extends React.Component {
     const { email, password, disabled } = this.state;
     return (
       <div className="containerLogin">
-        <img src={ logo } alt="logo" />
-        <form onSubmit={ this.handleSubmit }>
-          <input
-            className="input-login"
-            data-testid="email-input"
-            name="email"
-            onChange={ this.handleChanges }
-            placeholder="exemple@email.com"
-            required
-            type="email"
-            value={ email }
-          />
-          <input
-            className="input-login"
-            data-testid="password-input"
-            name="password"
-            onChange={ this.handleChanges }
-            placeholder="senha@123"
-            required
-            type="password"
-            value={ password }
-          />
-          <button
-            type="submit"
-            className="button-login"
-            disabled={ disabled }
-          >
-            Entrar
-          </button>
-        </form>
+        <div>
+          <img src={ logo } alt="logo" />
+          <form onSubmit={ this.handleSubmit }>
+            <input
+              className="input-login"
+              data-testid="email-input"
+              name="email"
+              onChange={ this.handleChanges }
+              placeholder="exemple@email.com"
+              required
+              type="email"
+              value={ email }
+            />
+            <input
+              className="input-login"
+              data-testid="password-input"
+              name="password"
+              onChange={ this.handleChanges }
+              placeholder="senha@123"
+              required
+              type="password"
+              value={ password }
+            />
+            <button
+              type="submit"
+              className="button-login"
+              disabled={ disabled }
+            >
+              Entrar
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
