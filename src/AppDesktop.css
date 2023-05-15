@@ -28,10 +28,10 @@
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    height: 40%;
+    height: 50%;
     justify-content: center;
     margin: auto;
-    width: 90%;
+    width: 50%;
   }
 
   .containerLogin img {
@@ -148,7 +148,7 @@
     height: 30px;
     margin-bottom: 20px;
     outline: 0;
-
+    width: 30%;
   }
 
   .input-form {
